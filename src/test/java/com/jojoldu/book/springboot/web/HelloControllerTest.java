@@ -10,9 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 //import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.is;
 // @RunWith
 // * 테스트 진행 시 JUnit 내장된 실행자 외 다른 실행자 실행
 // * 여기서는 SpringRunner 라는 실행자 사용
@@ -60,4 +59,29 @@ public class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(hello));
     }
+
+    @Test
+    public void helloDto_return() throws Exception{
+        String name = "hello";
+        int amount = 1000;
+
+        // param
+        // * API 테스트할 때 사용될 요청 파라미터 설정
+        // * 단, 값은 String만 허용
+        // * 그래서 숫자/날짜 등의 데이터도 등록 시 문자열로 변경해야 가능
+
+        // jsonPath
+        // * JSON 응답값을 필드별로 검증할 수 있는 메소드
+        // * $ 기준으로 필드명 명시
+        // * name, amount 를 검증하니 $.name, $.amount 로 검증
+
+        mvc.perform(
+                get("/hello/dto")
+                        .param("name", name)
+                        .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
+    }
+
 }
