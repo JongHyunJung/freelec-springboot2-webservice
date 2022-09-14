@@ -1,4 +1,4 @@
-package com.jojoldu.book.springboot.posts;
+package com.jojoldu.book.springboot.domain.posts;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -55,13 +55,18 @@ public class Posts {
     // @Builder
     // * 해당 클래스의 빌더 패턴 클래스 생성
     // * 생성자 상단 선언 시 생성자에 포함된 필드만 빌더에 포함
-    // * 빌더를 사용하게 되면 어느 필드에 어떤 값을 채워야 할지 명확해짐
+// * 빌더를 사용하게 되면 어느 필드에 어떤 값을 채워야 할지 명확해짐``````````````````````````````@qa!QA
 
     @Builder
     public Posts(String title, String content, String author){
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 
 }
