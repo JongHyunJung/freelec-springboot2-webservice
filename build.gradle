@@ -32,6 +32,7 @@ dependencies {
     implementation('org.projectlombok:lombok')
     implementation('com.h2database:h2') // 인메모리 관계형 DB
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
     testAnnotationProcessor('org.projectlombok:lombok')
     testImplementation('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')

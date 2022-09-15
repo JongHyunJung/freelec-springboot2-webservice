@@ -1,5 +1,6 @@
 package com.jojoldu.book.springboot.domain.posts;
 
+import com.jojoldu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity // JPA 어노테이션
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     // @GeneratedValue
     // * PK 생성 규칙을 나타냄
