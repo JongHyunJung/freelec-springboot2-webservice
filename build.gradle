@@ -33,6 +33,7 @@ dependencies {
     implementation('com.h2database:h2') // 인메모리 관계형 DB
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('org.springframework.boot:spring-boot-starter-mustache')
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-client') // 소셜 기능 구현 시 필요
     testAnnotationProcessor('org.projectlombok:lombok')
     testImplementation('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
