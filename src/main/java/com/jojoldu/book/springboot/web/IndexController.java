@@ -1,5 +1,6 @@
 package com.jojoldu.book.springboot.web;
 
+import com.jojoldu.book.springboot.config.auth.LoginUser;
 import com.jojoldu.book.springboot.config.auth.dto.SessionUser;
 import com.jojoldu.book.springboot.domain.posts.PostsRepository;
 import com.jojoldu.book.springboot.service.PostsService;
@@ -17,14 +18,17 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
+    // private final HttpSession httpSession;
     // Model
     // * 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장
     // * 여기서는 postsService.findAllDesc()로 가져온 결과를 posts 로 index.mustache 에 전달
     @GetMapping("/")
-    public String index(Model model){
+    // @LoginUser SessionUser user
+    // * 기존에 (User) httpSession.getAttribute("user")로 가져오던 세션 정보값이 개선
+    // * 이제는 어느 컨트롤러든지 @LoginUser 만 사용하면 세션 정보를 가져올 수 있음
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        //SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if(user != null){
             model.addAttribute("userName", user.getName());
