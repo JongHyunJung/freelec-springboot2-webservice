@@ -6,6 +6,7 @@ import com.jojoldu.book.springboot.domain.user.User;
 import com.jojoldu.book.springboot.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -34,8 +35,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // * 현재 구글만 사용하는 불필요한 값이지만, 이후 네이버 로그인 연동 시
         // 네이버 로그인인지 구글 로그인인지 구분하기 위해 사용
 
-        String registrationId = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint()
-                .getUserNameAttributeName();
+        String registrationId = userRequest.getClientRegistration().getRegistrationId();
 
         // userNameAttributeName
         // * OAuth2 로그인 진행 시 키가 되는 필드 값을 말함. Primary Key와 같은 의미
